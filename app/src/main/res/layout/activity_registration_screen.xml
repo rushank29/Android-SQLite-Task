@@ -41,12 +41,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="User email"
-            android:inputType="textCapWords" />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/save_user_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

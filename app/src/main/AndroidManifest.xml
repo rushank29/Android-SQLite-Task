@@ -13,11 +13,30 @@
         android:theme="@style/Theme.SQLiteTask"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="true"
+            android:label="Add New User"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="true"
+            android:label="Home">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity
             android:name=".RegistrationScreen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-
-        } else {
-
-        }
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
                 requestIdToken(getString(R.string.web_client_id)).
                 requestEmail().
@@ -77,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
                 Log.d("TAGtoken", "FirebaseAuth with Google:" + account.getId());
+
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("TAGFailed", "Google sign in failed", e);
@@ -95,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("TAG sign in success", "signInWithCredential: success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            Intent intent = new Intent(MainActivity.this, HomeScreen.class);
+                            startActivity(intent);
+
                         } else {
                             Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
                             // If sign in fails, display a message to the user.

@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class RegistrationScreen extends AppCompatActivity {
 
     TextInputEditText user_name, user_email;
-    Button save_btn;
+    Button save_user_btn;
     SharedPreferences sharedPreferences;
 
     //    So create a shared preferences name and also create key name
@@ -29,22 +29,30 @@ public class RegistrationScreen extends AppCompatActivity {
 
         user_name = findViewById(R.id.user_name);
         user_email = findViewById(R.id.user_email);
-        save_btn = findViewById(R.id.save_btn);
+        save_user_btn = findViewById(R.id.save_user_btn);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
-//        When opening this
+//        When opening this activity, first check whether the shared preferences data is available or not
+        String name = sharedPreferences.getString(KEY_NAME, null);
+        String email = sharedPreferences.getString(KEY_EMAIL, null);
 
-        save_btn.setOnClickListener(new View.OnClickListener() {
+        if (name != null) {
+            //  if data is available, then directly call Edit Profile Screen
+            Intent intent = new Intent(RegistrationScreen.this, HomeScreen.class);
+            startActivity(intent);
+        }
+
+        save_user_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //  On button click, put data on Shared preferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(KEY_NAME, user_name.getText().toString());
-                editor.putString(KEY_NAME, user_email.getText().toString());
+                editor.putString(KEY_EMAIL, user_email.getText().toString());
                 editor.apply();
 
-                Intent intent = new Intent(RegistrationScreen.this, EditProfile.class);
+                Intent intent = new Intent(RegistrationScreen.this, HomeScreen.class);
                 startActivity(intent);
 
                 Toast.makeText(RegistrationScreen.this, "User data saved successfully",

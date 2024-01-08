@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SQLiteTask</string>
     <string name="web_client_id">900010288181-g5o6559vpaeo1ktbkbrenps19k8dnd7s.apps.googleusercontent.com</string>
+    <string name="delete_all">Delete All</string>
 </resources>
