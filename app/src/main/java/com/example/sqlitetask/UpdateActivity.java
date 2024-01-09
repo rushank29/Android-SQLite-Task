@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,23 +67,36 @@ public class UpdateActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: pinCode=====>" + et_form_pinCode.getText().toString().trim());
 
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
-                myDB.updateUser(id, et_form_name.getText().toString().trim(),
-                        et_form_email.getText().toString().trim(),
-                        et_form_phone.getText().toString().trim(),
-                        et_form_gender.getText().toString().trim(),
-                        et_form_profession.getText().toString().trim(),
-                        et_form_address.getText().toString().trim(),
-                        et_form_city.getText().toString().trim(),
-                        et_form_state.getText().toString().trim(),
-                        et_form_country.getText().toString().trim(),
-                        et_form_pinCode.getText().toString().trim());
+                if (TextUtils.isEmpty(et_form_name.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_email.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_phone.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_gender.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_profession.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_address.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_city.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_state.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_country.getText().toString()) ||
+                        TextUtils.isEmpty(et_form_pinCode.getText().toString())) {
+                    Toast.makeText(UpdateActivity.this, "Enter pending details", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Updating data from TextInputEditText
+                    myDB.updateUser(id, et_form_name.getText().toString().trim(),
+                            et_form_email.getText().toString().trim(),
+                            et_form_phone.getText().toString().trim(),
+                            et_form_gender.getText().toString().trim(),
+                            et_form_profession.getText().toString().trim(),
+                            et_form_address.getText().toString().trim(),
+                            et_form_city.getText().toString().trim(),
+                            et_form_state.getText().toString().trim(),
+                            et_form_country.getText().toString().trim(),
+                            et_form_pinCode.getText().toString().trim());
+                }
             }
         });
 
         delete_data_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 confirmDialog();
             }
         });

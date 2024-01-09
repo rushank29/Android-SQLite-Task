@@ -2,9 +2,12 @@ package com.example.sqlitetask;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -33,16 +36,32 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(AddActivity.this);
-                myDB.addUser(form_name.getText().toString().trim(),
-                        form_email.getText().toString().trim(),
-                        form_phone.getText().toString().trim(),
-                        form_gender.getText().toString().trim(),
-                        form_profession.getText().toString().trim(),
-                        form_address.getText().toString().trim(),
-                        form_city.getText().toString().trim(),
-                        form_state.getText().toString().trim(),
-                        form_country.getText().toString().trim(),
-                        form_pinCode.getText().toString().trim());
+                if (TextUtils.isEmpty(form_name.getText().toString()) ||
+                        TextUtils.isEmpty(form_email.getText().toString()) ||
+                        TextUtils.isEmpty(form_phone.getText().toString()) ||
+                        TextUtils.isEmpty(form_gender.getText().toString()) ||
+                        TextUtils.isEmpty(form_profession.getText().toString()) ||
+                        TextUtils.isEmpty(form_address.getText().toString()) ||
+                        TextUtils.isEmpty(form_city.getText().toString()) ||
+                        TextUtils.isEmpty(form_state.getText().toString()) ||
+                        TextUtils.isEmpty(form_country.getText().toString()) ||
+                        TextUtils.isEmpty(form_pinCode.getText().toString())) {
+                    Toast.makeText(AddActivity.this, "Enter pending details", Toast.LENGTH_SHORT).show();
+                } else {
+                    myDB.addUser(form_name.getText().toString().trim(),
+                            form_email.getText().toString().trim(),
+                            form_phone.getText().toString().trim(),
+                            form_gender.getText().toString().trim(),
+                            form_profession.getText().toString().trim(),
+                            form_address.getText().toString().trim(),
+                            form_city.getText().toString().trim(),
+                            form_state.getText().toString().trim(),
+                            form_country.getText().toString().trim(),
+                            form_pinCode.getText().toString().trim());
+                    Intent intent = new Intent(AddActivity.this, HomeScreen.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
             }
         });
     }

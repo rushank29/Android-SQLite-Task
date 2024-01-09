@@ -26,6 +26,7 @@
                     android:id="@+id/form_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="?attr/actionBarSize"
                     android:hint="Name"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -146,15 +147,17 @@
                     android:layout_height="match_parent"
                     android:hint="Pin Code"
                     android:inputType="textCapWords"
-                    android:maxLength="10" />
+                    android:maxLength="6" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/add_data_button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_40sdp"
-                android:background="#484A48"
+                android:background="#CD3F51B5"
+                android:padding="@dimen/_8sdp"
                 android:text="Add"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_12sdp" />
